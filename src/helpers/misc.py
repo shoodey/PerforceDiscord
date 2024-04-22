@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 def ensure_env_var(name: str) -> str:
     value = os.getenv(name)
 
-    if len(value) == 0:
+    if (not value == None) and (len(value) == 0):
         raise ValueError(f"{name} is missing in .env file")
 
     return value

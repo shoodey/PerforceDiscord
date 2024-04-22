@@ -17,7 +17,7 @@ def post_embed(url, data):
                     {"name": "", "value": "\n".join(data["message"]), "inline": False}
                 ],
                 "footer": {
-                    "text": f"🗃️{len(data['files'])} | ✅{operations['add']} | ✏️{operations['edit']} | ❌{operations['delete']}"
+                    "text": f"🗃️{len(data['files'])} ✅{operations['add']} ✏️{operations['edit']} ❌{operations['delete']}"
                 },
             }
         ],
