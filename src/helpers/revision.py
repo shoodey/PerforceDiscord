@@ -13,9 +13,6 @@ def describe_revision(revision: int) -> str:
         universal_newlines=True,
     ).communicate()[0]
 
-    if not description.startswith("Change " + str(revision) + " by "):
-        raise ValueError(f"Revision {revision} not found")
-
     return description
 
 
@@ -24,6 +21,11 @@ def parse_description(revision_description: str) -> str:
     parsed_description = [
         line.strip() for line in revision_description.split("\n") if line.strip()
     ]
+
+    if not len(parsed_description) > 0 and not parsed_description[0].startswith(
+        "Change "
+    ):
+        raise ValueError("Invalid revision description")
 
     # Remove the "#changelist validated" line if it exists
     if "#changelist validated" in parsed_description:
