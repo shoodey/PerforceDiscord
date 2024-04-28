@@ -24,6 +24,9 @@ def count_file_operations(files):
     operations = {"add": 0, "edit": 0, "delete": 0}
 
     for file, revision_number, operation in files:
-        operations[operation] += 1
+        # Ensure the operation is valid (add, edit, or delete)
+        # there seem to be more like (move/add, move/delete) which we are not tracking
+        if operation in operations:
+            operations[operation] += 1
 
     return operations
