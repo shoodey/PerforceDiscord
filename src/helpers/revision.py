@@ -46,16 +46,9 @@ def parse_description(revision_description: str) -> str:
         "author": parsed_description[0].split()[3].split("@")[0],
         "workspace": parsed_description[0].split()[3].split("@")[1],
         "timestamp": timestamp,
-        "message": format_message(parsed_description[1 : files_list_start - 1]),
+        "message": parsed_description[1 : files_list_start - 1],
         "files": parse_files_list(parsed_description[files_list_start:]),
     }
-
-
-def format_message(message_lines):
-    for i in range(len(message_lines)):
-        if not message_lines[i].startswith("-"):
-            message_lines[i] = "- " + message_lines[i]
-    return message_lines
 
 
 def parse_file_info(file_info):
